@@ -1,14 +1,14 @@
 import { Route } from '@angular/router';
 
 import { UserRouteAccessService } from '../shared';
-import { HomeComponent } from './';
+import { StartComponent } from './';
 
-export const HOME_ROUTE: Route = {
-  path: 'qq',
-  component: HomeComponent,
+export const startRoute: Route = {
+  path: 'start',
+  component: StartComponent,
   data: {
     authorities: [],
-    pageTitle: 'home.title'
+    pageTitle: 'start.title'
   },
   canActivate: [UserRouteAccessService]
 };

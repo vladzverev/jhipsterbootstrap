@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
 import {
     auditsRoute,
@@ -11,7 +11,7 @@ import {
     userDialogRoute
 } from './';
 
-import { UserRouteAccessService } from '../shared';
+import {UserRouteAccessService} from '../shared';
 
 let ADMIN_ROUTES = [
     auditsRoute,

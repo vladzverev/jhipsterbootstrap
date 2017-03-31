@@ -9,6 +9,7 @@ import { JhipsterHomeModule } from './home/home.module';
 import { JhipsterAdminModule } from './admin/admin.module';
 import { JhipsterAccountModule } from './account/account.module';
 import { JhipsterEntityModule } from './entities/entity.module';
+import { StartModule } from './start/start.module';
 
 import { LayoutRoutingModule } from './layouts';
 import { customHttpProvider } from './blocks/interceptor/http.provider';
@@ -34,7 +35,8 @@ import {
         JhipsterHomeModule,
         JhipsterAdminModule,
         JhipsterAccountModule,
-        JhipsterEntityModule
+        JhipsterEntityModule,
+        StartModule
     ],
     declarations: [
         JhiMainComponent,
