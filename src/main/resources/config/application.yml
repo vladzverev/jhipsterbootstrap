@@ -45,6 +45,10 @@ spring:
             enabled: false
     thymeleaf:
         mode: XHTML
+    http:
+        multipart:
+            max-file-size: 2MB
+            max-request-size: 2MB
 
 security:
     basic:
@@ -79,7 +83,7 @@ jhipster:
         #allow-credentials: true
         #max-age: 1800
     mail:
-        from: jhipster@localhost
+        from: xfgtyjdty@gmail.com
     swagger:
         default-include-pattern: /api/.*
         title: jhipster API

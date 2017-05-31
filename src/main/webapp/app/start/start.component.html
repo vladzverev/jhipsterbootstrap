@@ -1,27 +1,51 @@
-<md-grid-list cols="3" [rowHeight]="innerHeight">
-    <md-grid-tile
-        [colspan]="1"
-        [rowspan]="2">
-    </md-grid-tile>
-    <md-grid-tile
-        [colspan]="1"
-        [rowspan]="1">
-        <button md-raised-button color="primary" class="text-upper">Primary</button>
-        <button md-button>Flat button</button>
-        <button md-button>Click me!</button>
-        <button md-raised-button class="text-upper">Raised</button>
-        {{innerHeight}}
-    </md-grid-tile>
-    <md-grid-tile
-        [colspan]="1"
-        [rowspan]="1">
-    </md-grid-tile>
-    <md-grid-tile
-        [colspan]="1"
-        [rowspan]="1">
-        <button md-raised-button color="primary" class="text-upper">Primary</button>
-        <button md-button>Flat button</button>
-        <button md-button>Click me!</button>
-        <button md-raised-button class="text-upper">Raised</button>
-    </md-grid-tile>
-</md-grid-list>
+<div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+        <div [ngSwitch]="isAuthenticated()">
+            <button *ngSwitchCase="false" type="button" class="btn  btn-outline-info" [routerLink]="['/register']">
+                Личный кабинет
+            </button>
+        </div>
+        <button type="button" class="btn btn-primary" [routerLink]="['/announcement']">
+            Подать обьявление
+        </button>
+    </div>
+    <div class="col">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+        <form (ngSubmit)="load()">
+            <div class="input-group">
+                <input type="text" class="form-control" name="search" placeholder="Поиск" [(ngModel)]="search">
+                <span class="input-group-btn">
+                 <button type="submit" class="btn btn-primary">
+                     <span class="fa fa-search"></span>
+                 </button>
+               </span>
+            </div>
+        </form>
+    </div>
+    <div class="col">
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+        <!--        <tr *ngFor="let announcement of announcements">
+                    <td>{{announcement.id}}</td>
+                    <td>{{announcement.title}}</td>
+                </tr>-->
+        <tr *ngFor="let image of images">
+            <td>
+                <img [src]="'data:' + image.photoContentType + ';base64,' + image.photo"/>
+            </td>
+        </tr>
+    </div>
+    <div class="col">
+    </div>
+</div>

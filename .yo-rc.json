@@ -2,9 +2,9 @@
   "generator-jhipster": {
     "promptValues": {
       "packageName": "com.mycompany.myapp",
-      "nativeLanguage": "ru"
+      "nativeLanguage": "en"
     },
-    "jhipsterVersion": "4.1.1",
+    "jhipsterVersion": "4.5.1",
     "baseName": "jhipster",
     "packageName": "com.mycompany.myapp",
     "packageFolder": "com/mycompany/myapp",
@@ -21,18 +21,19 @@
     "serviceDiscoveryType": false,
     "buildTool": "maven",
     "enableSocialSignIn": false,
-    "jwtSecretKey": "48fc1ab0f888ae15e728cdf3344c854cb21fe559",
+    "jwtSecretKey": "ac7f08177e1a2d985e2a519dc83e3cb6bd28f7e6",
     "clientFramework": "angular2",
     "useSass": true,
     "clientPackageManager": "yarn",
     "applicationType": "monolith",
     "testFrameworks": [],
     "jhiPrefix": "jhi",
+    "otherModules": [],
     "enableTranslation": true,
-    "nativeLanguage": "ru",
+    "nativeLanguage": "en",
     "languages": [
-      "ru",
-      "en"
+      "en",
+      "ru"
     ]
   }
 }

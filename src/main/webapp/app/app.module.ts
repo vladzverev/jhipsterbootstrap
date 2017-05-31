@@ -1,59 +1,47 @@
 import './vendor.ts';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {Routes, RouterModule} from '@angular/router';
 
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { Ng2Webstorage } from 'ng2-webstorage';
+import { NgJhipsterModule } from 'ng-jhipster';
+import { FileUploadModule } from 'ng2-file-upload';
 
-import { JhipsterSharedModule, UserRouteAccessService } from './shared';
-import { JhipsterHomeModule } from './home/home.module';
-import { JhipsterAdminModule } from './admin/admin.module';
-import { JhipsterAccountModule } from './account/account.module';
-import { JhipsterEntityModule } from './entities/entity.module';
-import { StartModule } from './start/start.module';
-
-import { LayoutRoutingModule } from './layouts';
-import { customHttpProvider } from './blocks/interceptor/http.provider';
-import { PaginationConfig } from './blocks/config/uib-pagination.config';
-
-import {
-    JhiMainComponent,
-    NavbarComponent,
-    FooterComponent,
-    ProfileService,
-    PageRibbonComponent,
-    ActiveMenuDirective,
-    ErrorComponent
-} from './layouts';
+import {AppComponent} from './app.components';
+import {StartComponent} from './start/start.component';
+import {AnnouncementComponent} from './announcement/announcement.component';
+import {AnnouncementService} from './entities/announcement';
+import {ImageService} from './entities/image';
+import {RegisterComponent, Register, PasswordStrengthBarComponent} from './register';
+import {AnnouncementPagingParamsResolver, routes} from './app.route';
+import {Principal} from './shared';
 
 
 @NgModule({
     imports: [
+        RouterModule.forRoot(routes),
         BrowserModule,
-        LayoutRoutingModule,
-        Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
-        JhipsterSharedModule,
-        JhipsterHomeModule,
-        JhipsterAdminModule,
-        JhipsterAccountModule,
-        JhipsterEntityModule,
-        StartModule
+        FormsModule,
+        NgbModule.forRoot(),
+        NgJhipsterModule.forRoot({}),
+        FileUploadModule
     ],
     declarations: [
-        JhiMainComponent,
-        NavbarComponent,
-        ErrorComponent,
-        PageRibbonComponent,
-        ActiveMenuDirective,
-        FooterComponent
+        AppComponent,
+        StartComponent,
+        AnnouncementComponent,
+        RegisterComponent,
+        PasswordStrengthBarComponent
     ],
     providers: [
-        ProfileService,
-        { provide: Window, useValue: window },
-        { provide: Document, useValue: document },
-        customHttpProvider(),
-        PaginationConfig,
-        UserRouteAccessService
+        AnnouncementService,
+        ImageService,
+        AnnouncementPagingParamsResolver,
+        Register,
+        Principal
     ],
-    bootstrap: [ JhiMainComponent ]
+    bootstrap: [AppComponent]
 })
-export class JhipsterAppModule {}
+export class AppModule {
+}
