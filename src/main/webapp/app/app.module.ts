@@ -7,6 +7,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 import { NgJhipsterModule } from 'ng-jhipster';
 import { FileUploadModule } from 'ng2-file-upload';
+import { Ng2Webstorage } from 'ng2-webstorage';
 
 import {AppComponent} from './app.components';
 import {StartComponent} from './start/start.component';
@@ -15,7 +16,9 @@ import {AnnouncementService} from './entities/announcement';
 import {ImageService} from './entities/image';
 import {RegisterComponent, Register, PasswordStrengthBarComponent} from './register';
 import {AnnouncementPagingParamsResolver, routes} from './app.route';
-import {Principal} from './shared';
+import {customHttpProvider } from './blocks/interceptor/http.provider';
+import {AccountService, AuthServerProvider, Principal, StateStorageService} from './shared';
+import {LoginService, LoginComponent} from './login';
 
 
 @NgModule({
@@ -25,6 +28,7 @@ import {Principal} from './shared';
         FormsModule,
         NgbModule.forRoot(),
         NgJhipsterModule.forRoot({}),
+        Ng2Webstorage.forRoot({ prefix: 'jhi', separator: '-'}),
         FileUploadModule
     ],
     declarations: [
@@ -32,14 +36,20 @@ import {Principal} from './shared';
         StartComponent,
         AnnouncementComponent,
         RegisterComponent,
-        PasswordStrengthBarComponent
+        PasswordStrengthBarComponent,
+        LoginComponent
     ],
     providers: [
         AnnouncementService,
         ImageService,
+        customHttpProvider(),
         AnnouncementPagingParamsResolver,
         Register,
-        Principal
+        AccountService,
+        AuthServerProvider,
+        Principal,
+        StateStorageService,
+        LoginService
     ],
     bootstrap: [AppComponent]
 })

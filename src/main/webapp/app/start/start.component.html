@@ -1,11 +1,16 @@
+
 <div class="row">
     <div class="col">
     </div>
     <div class="col">
         <div [ngSwitch]="isAuthenticated()">
-            <button *ngSwitchCase="false" type="button" class="btn  btn-outline-info" [routerLink]="['/register']">
-                Личный кабинет
-            </button>
+            <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Личный кабинет</button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBasic2">
+                    <button class="dropdown-item" [routerLink]="['/login']">Войти</button>
+                    <button class="dropdown-item" *ngSwitchCase="false" [routerLink]="['/register']">Зарегистрироваться</button>
+                    </div>
+            </div>
         </div>
         <button type="button" class="btn btn-primary" [routerLink]="['/announcement']">
             Подать обьявление

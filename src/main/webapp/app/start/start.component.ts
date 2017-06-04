@@ -80,5 +80,6 @@ export class StartComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.principal.identity();
     }
 }

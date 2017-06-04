@@ -4,6 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {StartComponent} from './start/start.component';
 import {AnnouncementComponent} from './announcement/announcement.component';
 import {RegisterComponent} from './register';
+import {LoginComponent} from './login';
 //import {AnnouncementPagingParamsResolver} from './entities/announcement/announcement-paging-params.resolver';
 
 import { Injectable } from '@angular/core';
@@ -38,6 +39,7 @@ export const routes:Routes = [
         component: StartComponent
     },
     {path: 'announcement', component: AnnouncementComponent},
-    {path: 'register', component: RegisterComponent}
+    {path: 'register', component: RegisterComponent},
+    {path: 'login', component: LoginComponent}
 
 ];
