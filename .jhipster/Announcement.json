@@ -1,0 +1,50 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "image",
+            "otherEntityName": "image",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "announcement"
+        },
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "announcement"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "text",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "2000"
+        },
+        {
+            "fieldName": "phone",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "maxlength",
+                "pattern"
+            ],
+            "fieldValidateRulesMaxlength": "10",
+            "fieldValidateRulesPattern": "[0-9]"
+        }
+    ],
+    "changelogDate": "20170406125055",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "announcement",
+    "pagination": "pagination"
+}

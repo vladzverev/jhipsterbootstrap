@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col">
+    </div>
+    <div class="col">
+        <form (ngSubmit)="save()">
+            <div class="form-group">
+                <label>Заголовок</label>
+                <input type="text" class="form-control" name="title" placeholder="Название"
+                       [(ngModel)]="announcement.title">
+                <label>Описание</label>
+                <input type="text" class="form-control" name="title" placeholder="Название"
+                       [(ngModel)]="announcement.text">
+                <label>Телефон</label>
+                <input type="text" class="form-control" name="title" placeholder="Название"
+                       [(ngModel)]="announcement.phone">
+                <label>Фото</label>
+                <input type="file" ng2FileSelect [uploader]="uploader"/>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <span>Save</span>
+            </button>
+        </form>
+    </div>
+    <div class="col">
+    </div>
+</div>
