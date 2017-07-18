@@ -13,6 +13,9 @@ export class ImageService {
     constructor(private http: Http) {
         this.resourceUrl = 'api/images';
         this.uploader = new FileUploader({url: this.resourceUrl});
+        this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+
+        };
     }
 
     create() {

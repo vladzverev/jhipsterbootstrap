@@ -14,7 +14,12 @@
                 <input type="text" class="form-control" name="title" placeholder="Название"
                        [(ngModel)]="announcement.phone">
                 <label>Фото</label>
-                <input type="file" ng2FileSelect [uploader]="uploader"/>
+                <input type="file" ng2FileSelect [uploader]="uploader" (change)="fileChangeEvent($event)"/>
+                <div *ngFor="let item of uploader.queue">
+                    <div *ngIf="item.isSuccess">
+                        <img style='width:100px;height:100px;' src='data:image/jpeg;base64'/>
+                    </div>
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">
                 <span>Save</span>

@@ -24,10 +24,13 @@ export class AnnouncementComponent implements OnInit {
     ngOnInit() {
     }
 
+    fileChangeEvent(){
+        this.imageService.create();
+    }
+
     save() {
         this.announcementService.create(this.announcement)
             .subscribe((res: Announcement) => {
-                this.imageService.create();
                 this.onSaveSuccess(res);
             }, (res: Response) => this.onSaveError(res.json()));
     }
