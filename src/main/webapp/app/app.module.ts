@@ -13,7 +13,7 @@ import {AppComponent} from './app.components';
 import {StartComponent} from './start/start.component';
 import {AnnouncementComponent} from './announcement/announcement.component';
 import {AnnouncementService} from './entities/announcement';
-import {ImageService} from './entities/image';
+import {ImageService, ImagePreview} from './entities/image';
 import {RegisterComponent, Register, PasswordStrengthBarComponent} from './register';
 import {AnnouncementPagingParamsResolver, routes} from './app.route';
 import {customHttpProvider } from './blocks/interceptor/http.provider';
@@ -37,7 +37,8 @@ import {LoginService, LoginComponent} from './login';
         AnnouncementComponent,
         RegisterComponent,
         PasswordStrengthBarComponent,
-        LoginComponent
+        LoginComponent,
+        ImagePreview
     ],
     providers: [
         AnnouncementService,
