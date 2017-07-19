@@ -27,7 +27,9 @@ export class StartComponent implements OnInit {
     constructor(private announcementService: AnnouncementService,
                 private imageService: ImageService,
                 private principal: Principal,
-                private activatedRoute: ActivatedRoute) {
+                private activatedRoute: ActivatedRoute,
+                private router: Router
+    ) {
         this.innerHeight = (window.screen.height) / 2 + 'px';
 
         this.itemsPerPage = ITEMS_PER_PAGE;
@@ -69,6 +71,14 @@ export class StartComponent implements OnInit {
     }
 
     private onError(error) {
+    }
+
+    choosePage(){
+        if (this.isAuthenticated()) {
+            this.router.navigate (['announcement']);
+        } else {
+            this.router.navigate (['login']);
+        }
     }
 
     sort() {
