@@ -5,11 +5,13 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Announcement.
@@ -34,8 +36,8 @@ public class Announcement implements Serializable {
     private String text;
 
     @NotNull
-//    @Size(min = 10, max = 10)
-    @Pattern(regexp = "[0-9]")
+    @Size(min = 10, max = 10)
+    @Pattern(regexp = "[0-9]+")
     @Column(name = "phone", length = 10, nullable = false)
     private String phone;
 

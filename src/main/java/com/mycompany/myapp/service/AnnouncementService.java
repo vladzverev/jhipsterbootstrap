@@ -1,17 +1,17 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.Announcement;
+import com.mycompany.myapp.domain.Image;
 import com.mycompany.myapp.repository.AnnouncementRepository;
+import com.mycompany.myapp.repository.ImageRepository;
 import com.mycompany.myapp.service.dto.AnnouncementDTO;
 import com.mycompany.myapp.service.mapper.AnnouncementMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Service Implementation for managing Announcement.
@@ -21,14 +21,19 @@ import java.util.List;
 public class AnnouncementService {
 
     private final Logger log = LoggerFactory.getLogger(AnnouncementService.class);
-    
+
     private final AnnouncementRepository announcementRepository;
+
+    private final ImageRepository imageRepository;
 
     private final AnnouncementMapper announcementMapper;
 
-    public AnnouncementService(AnnouncementRepository announcementRepository, AnnouncementMapper announcementMapper) {
+    public AnnouncementService(AnnouncementRepository announcementRepository,
+                               AnnouncementMapper announcementMapper,
+                               ImageRepository imageRepository) {
         this.announcementRepository = announcementRepository;
         this.announcementMapper = announcementMapper;
+        this.imageRepository = imageRepository;
     }
 
     /**
@@ -40,16 +45,21 @@ public class AnnouncementService {
     public AnnouncementDTO save(AnnouncementDTO announcementDTO) {
         log.debug("Request to save Announcement : {}", announcementDTO);
         Announcement announcement = announcementMapper.toEntity(announcementDTO);
-        announcement = announcementRepository.save(announcement);
-        AnnouncementDTO result = announcementMapper.toDto(announcement);
+        announcementDTO.getImageId().forEach(i -> {
+            Image image = imageRepository.findOne(i);
+            image.setAnnouncement(announcement);
+            imageRepository.save(image);
+        });
+        Announcement announcement2 = announcementRepository.save(announcement);
+        AnnouncementDTO result = announcementMapper.toDto(announcement2);
         return result;
     }
 
     /**
-     *  Get all the announcements.
-     *  
-     *  @param pageable the pagination information
-     *  @return the list of entities
+     * Get all the announcements.
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
      */
     @Transactional(readOnly = true)
     public Page<AnnouncementDTO> findAll(Pageable pageable) {
@@ -59,10 +69,10 @@ public class AnnouncementService {
     }
 
     /**
-     *  Get one announcement by id.
+     * Get one announcement by id.
      *
-     *  @param id the id of the entity
-     *  @return the entity
+     * @param id the id of the entity
+     * @return the entity
      */
     @Transactional(readOnly = true)
     public AnnouncementDTO findOne(Long id) {
@@ -73,9 +83,9 @@ public class AnnouncementService {
     }
 
     /**
-     *  Delete the  announcement by id.
+     * Delete the  announcement by id.
      *
-     *  @param id the id of the entity
+     * @param id the id of the entity
      */
     public void delete(Long id) {
         log.debug("Request to delete Announcement : {}", id);

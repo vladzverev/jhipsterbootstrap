@@ -8,14 +8,14 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity Announcement and its DTO AnnouncementDTO.
  */
-@Mapper(componentModel = "spring", uses = {UserMapper.class, })
+@Mapper(componentModel = "spring", uses = {UserMapper.class})
 public interface AnnouncementMapper extends EntityMapper <AnnouncementDTO, Announcement> {
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "user.login", target = "userLogin")
-    AnnouncementDTO toDto(Announcement announcement); 
-    @Mapping(target = "images", ignore = true)
+    AnnouncementDTO toDto(Announcement announcement);
     @Mapping(source = "userId", target = "user")
-    Announcement toEntity(AnnouncementDTO announcementDTO); 
+    @Mapping(target = "images", ignore = true)
+    Announcement toEntity(AnnouncementDTO announcementDTO);
     /**
      * generating the fromId for all mappers if the databaseType is sql, as the class has relationship to it might need it, instead of
      * creating a new attribute to know if the entity has any relationship from some other entity
@@ -23,7 +23,7 @@ public interface AnnouncementMapper extends EntityMapper <AnnouncementDTO, Annou
      * @param id id of the entity
      * @return the entity instance
      */
-     
+
     default Announcement fromId(Long id) {
         if (id == null) {
             return null;

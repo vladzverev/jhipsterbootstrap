@@ -6,6 +6,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A DTO for the Announcement entity.
@@ -21,13 +22,23 @@ public class AnnouncementDTO implements Serializable {
     private String text;
 
     @NotNull
-//    @Size(min = 10, max = 10)
-    @Pattern(regexp = "[0-9]")
+    @Size(min = 10, max = 10)
+    @Pattern(regexp = "[0-9]+")
     private String phone;
 
     private Long userId;
 
     private String userLogin;
+
+    private Set<Long> imageId;
+
+    public Set<Long> getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(Set<Long> imageId) {
+        this.imageId = imageId;
+    }
 
     public Long getId() {
         return id;

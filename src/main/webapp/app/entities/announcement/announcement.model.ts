@@ -4,7 +4,7 @@ export class Announcement {
         public title?: string,
         public text?: string,
         public phone?: string,
-        public imageId?: number
+        public imageId?: number[]
     ) {
     }
 }

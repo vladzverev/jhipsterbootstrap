@@ -44,6 +44,10 @@ export class AnnouncementComponent implements OnInit {
     }
 
     save() {
+        this.announcement.imageId = [];
+        this.uploader.queue.forEach(el => {
+            this.announcement.imageId.push(JSON.parse(el._xhr.response).id);
+         });
         this.announcementService.create(this.announcement)
             .subscribe((res: Announcement) => {
                 this.onSaveSuccess(res);
